@@ -4,6 +4,8 @@ def read_question_file(file_path):
         # print(f.read().strip())
         return f.read().strip()
 
+def read_uploaded_file(file_content: str):
+    return file_content.strip()
 
 # if __name__ == "__main__":
 #     text=read_question_file("../../data/questions.txt")
