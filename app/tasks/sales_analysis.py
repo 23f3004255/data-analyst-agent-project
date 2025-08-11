@@ -1,17 +1,11 @@
 import pandas as pd
 from fastapi.encoders import jsonable_encoder
 from matplotlib import pyplot as plt
-from app.utils import fig_to_base64
+from app.utils import fig_to_base64,read_csv_files
 
 
 async def process(qtext,files):
-    dfs=[]
-
-    for f in files or []:
-        content = await f.read()
-        from io import StringIO
-        df = pd.read_csv(StringIO(content.decode()))
-        dfs.append(df)
+    dfs = await read_csv_files(files)
 
     if not dfs:
         return {"error": "No CSV files provided"}

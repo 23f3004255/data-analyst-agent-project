@@ -1,4 +1,4 @@
-from app.tasks import film_analysis, sales_analysis,network_analysis
+from app.tasks import film_analysis, sales_analysis,network_analysis,weather_analysis
 
 
 async def handle_request(questions_file,other_files):
@@ -9,6 +9,8 @@ async def handle_request(questions_file,other_files):
         return await sales_analysis.process(qtext,other_files)
     elif ("network" in qtext.lower()) or ("edges" in qtext.lower()):
         return await network_analysis.process(qtext,other_files)
+    elif ("weather" in qtext.lower()) or ("temperature" in qtext.lower()):
+        return await weather_analysis.process(qtext,other_files)
 
     return "unknown file uploaded"
 
