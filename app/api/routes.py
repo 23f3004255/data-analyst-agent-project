@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import APIRouter, UploadFile,File
 from app.config import FILE_PATH
 from app.utils import read_question_file, extract_questions
@@ -12,7 +13,7 @@ def hello():
 
 
 @router.post("/")
-async def analyse(file:UploadFile=File(...),files: list[UploadFile] = File(None)):
+async def analyse(file:UploadFile=File(...),files: Optional[list[UploadFile]] = File(None)):
     return await handle_request(file,files)
 
     # content = await file.read()
