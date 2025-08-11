@@ -16,10 +16,4 @@ def hello():
 async def analyse(file:UploadFile=File(...),files: Optional[list[UploadFile]] = File(None)):
     return await handle_request(file,files)
 
-    # content = await file.read()
-    # content = content.decode("utf-8")
-    # print(extract_questions(content))
-    # print({"filename": file.filename, "size": len(content)})
-    # return extract_questions(content)
-
 
