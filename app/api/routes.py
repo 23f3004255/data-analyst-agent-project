@@ -1,8 +1,7 @@
-import os
-import tempfile
 from fastapi import APIRouter, UploadFile,File
 from app.config import FILE_PATH
-from app.utils import read_question_file, extract_questions, read_uploaded_file
+from app.utils import read_question_file, extract_questions
+from app.services import handle_request
 
 router=APIRouter()
 
@@ -13,7 +12,13 @@ def hello():
 
 
 @router.post("/")
-async def analyse(file:UploadFile=File(...)):
-    pass
+async def analyse(file:UploadFile=File(...),files: list[UploadFile] = File(None)):
+    return await handle_request(file,files)
+
+    # content = await file.read()
+    # content = content.decode("utf-8")
+    # print(extract_questions(content))
+    # print({"filename": file.filename, "size": len(content)})
+    # return extract_questions(content)
 
 
